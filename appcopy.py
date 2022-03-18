@@ -13,36 +13,42 @@ def addpage():
     new_todo = Todo(title=title, complete=False)
     db.session.add(new_todo)
     db.session.commit()
+    return redirect(url_for("home"))
 
 def updatepage(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     todo.complete = not todo.complete
     db.session.commit()
     print(request.path)
+    return redirect(url_for("home"))
 
 def deletepage(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     db.session.delete(todo)
     db.session.commit()
     print(request.path)
+    return redirect(url_for("home"))
 
 def editpage():
     title = request.form.get("title")
     new_todo = Todo(title=title, complete=False)
     db.session.add(new_todo)
     db.session.commit()
+    return redirect(url_for("newhome"))
 
 def dopage(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     todo.complete = not todo.complete
     db.session.commit()
     print(request.path)
+    return redirect(url_for("newhome"))
 
 def erasepage(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     db.session.delete(todo)
     db.session.commit()
     print(request.path)
+    return redirect(url_for("newhome"))
 
 
 '''def task(data,**kwargs):

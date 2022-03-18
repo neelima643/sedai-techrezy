@@ -8,7 +8,7 @@ def generatefn(url_list, to_list, newfun):
     for i in range(len(url_list)):
         f.write('   if \'' + url_list[i] + '\' in data: \n')
         f.write('       ' + to_list[i] + '(**kwargs)\n')
-        f.write('       return redirect(url_for("home"))\n')
+        #f.write('       return redirect(url_for("home"))\n')
 
 y='.'
 url_list=[]
@@ -60,17 +60,23 @@ for i in to_list:
 url_dict = dict(zip(url_list, to_list))
 print(url_dict)
 
-do_list=[]
+
 for i in yaml_dict:
-    yaml_list=[]
-    yaml_list.append(yaml_dict[i])
+    #yaml_list=[]
+    yaml_list=yaml_dict[i]
     print('\n\n\n')
     print(yaml_list)
+    print('\n\n\n')
+    do_list=[]
+    for j in yaml_list:
 
+        do_list.append(url_dict[j])
+    print(do_list)
+    generatefn(yaml_list, do_list, i)
     
     
     #print(do_list)
 #print(to_list)
 #url_list = ['/add', '/update', '/delete']
 #to_list = ['addpage', 'updatepage', 'deletepage']
-generatefn(url_list, to_list, 'task')
+
